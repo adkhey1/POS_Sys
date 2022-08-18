@@ -75,9 +75,18 @@ public class authController {
 
     }
 
-    @GetMapping("/guidelines")
-    public String guidelines() {
-        return "guidelines";
+    @GetMapping("/termsofuse")
+    public String termsOfUse() {
+        return "termsofuse";
     }
 
+    @GetMapping("/security")
+    public String security() {
+        return "security";
+    }
+
+    @GetMapping("/cookies")
+    public String cookies() {
+        return "cookies";
+    }
 }
