@@ -26,7 +26,7 @@ public class authController {
     private userRepository userRepository;
 
     @GetMapping(value = "/test12")
-    public List<String> test12(){
+    public List<String> test12() {
         String psi = "hello world";
         List<String> output = authService.getFirstname();
 
@@ -45,7 +45,8 @@ public class authController {
         return "index";
     }
 
-    /**input all attributes from user. execute registering method in register.html
+    /**
+     * input all attributes from user. execute registering method in register.html
      *
      * @param model
      * @return register page
@@ -57,7 +58,8 @@ public class authController {
     }
 
 
-    /**save complete user in database. goes back to index page
+    /**
+     * save complete user in database. goes back to index page
      *
      * @param user
      * @return index.html
@@ -73,5 +75,9 @@ public class authController {
 
     }
 
+    @GetMapping("/guidelines")
+    public String guidelines() {
+        return "guidelines";
+    }
 
 }

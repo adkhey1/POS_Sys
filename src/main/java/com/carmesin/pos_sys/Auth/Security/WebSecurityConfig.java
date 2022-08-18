@@ -45,14 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/js/**", "/css/**", "/", "/register", "/registering").permitAll().
+                .antMatchers("/js/**", "/css/**", "/", "/register", "/registering", "/guidelines").permitAll().
                 antMatchers(/* all secured endpoints*/ "/pos/**").authenticated().anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .usernameParameter("email")
-                .defaultSuccessUrl("/pos") //redirect, after login direct to localhost8080/pos
+                .defaultSuccessUrl("/pos") //redirect -> after login direct to localhost8080/pos
                 .permitAll()
-                .and().logout().logoutSuccessUrl("/logoutdone").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll()
+                .and().logout().logoutSuccessUrl("/index").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll()
                 .and().csrf().disable().cors().disable();
     }
 }
