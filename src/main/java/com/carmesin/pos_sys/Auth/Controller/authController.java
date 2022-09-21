@@ -75,6 +75,12 @@ public class authController {
 
     }
 
+    @RequestMapping("/pos")
+    public String pos_system() {
+        return "pos";
+    }
+
+
     @GetMapping("/termsofuse")
     public String termsOfUse() {
         return "termsofuse";
