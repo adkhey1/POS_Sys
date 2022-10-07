@@ -19,8 +19,6 @@ import java.util.List;
 @Controller
 public class authController {
 
-    //test commit
-
     @Autowired
     private authService authService;
 
