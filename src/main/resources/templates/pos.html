@@ -12,7 +12,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+
         async function app(choice) {
+
 
             $.ajax({
                 async: "true",
@@ -25,14 +27,18 @@
                 success: (data) => {
                     console.log(data)
 
+                    document.getElementById('buttons').innerHTML = "";
+
                     for (let i = 0; i < data.length; i++) {
                         //console.log(data[i].name);
 
                         var btn = document.createElement('input');
                         btn.setAttribute('type', 'button'); // input element of type button
                         btn.setAttribute('value', data[i].name);
-                        document.body.appendChild(btn);
+                        document.getElementById('buttons').appendChild(btn);
+                        //appendChild -> add btn to buttons
                     }
+
 
 
                 }
@@ -43,26 +49,64 @@
 </head>
 <body class="container">
 
-<div>
-    <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" onclick="app(1)"/>
-    <input type="submit" class="btn btn-outline-danger" name="Single" value="Single" onclick="app(2)"/>
-    <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday" onclick="app(3)"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div>
+                <h3>Choose your selection!</h3>
+                <br>
+                <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" onclick="app(1)"/>
+                <input type="submit" class="btn btn-outline-danger" name="Single" value="Single" onclick="app(2)"/>
+                <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday" onclick="app(3)"/>
+                <div id="buttons">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <h3>Current Price:</h3>
+            <br>
+            <br>
+            <fieldset>
+                <legend>Adult</legend>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Price</p>
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" class="btn btn-outline-danger" name="Delete" value="Delete"/>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 
-<!--
-<form action="http://localhost:8080/getPrices" method="post">
-    <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" />
-    <input type="submit" class="btn btn-outline-danger" name="Single" value="Single"/>
-    <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday"/>
-</form>
--->
 
-<div id="allPrices" hidden>
-    <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday"/>
-    <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday"/>
-    <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday"/>
-</div>
 
+
+    <!--
+
+    <div class="row">
+                <div class="col-4">
+                    <p>Titel</p>
+                </div>
+                <div class="col-4">
+                    <p>Preis</p>
+                </div>
+                <div class="col-4">
+                    <input type="submit" class="btn btn-outline-danger" name="Delete" value="Delete"/>
+                </div>
+            </div>
+
+
+    <form action="http://localhost:8080/getPrices" method="post">
+        <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" />
+        <input type="submit" class="btn btn-outline-danger" name="Single" value="Single"/>
+        <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday"/>
+    </form>
+    -->
 
 </body>
 </html>
