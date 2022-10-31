@@ -32,12 +32,12 @@ public class posController {
     @PostMapping(value = "/getPrices", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPrices(@RequestBody String choice, HttpServletRequest request) {
 
-        Principal principal = request.getUserPrincipal();
-        userModel user = userRepository.findByEmail(principal.getName());
+        //Principal principal = request.getUserPrincipal();
+        //userModel user = userRepository.findByEmail(principal.getName());
 
         List<priceModel> output = posService.selectChoice(choice);
 
-        return ResponseEntity.status(HttpStatus.OK).body(output);
+        return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*").body(output);
     }
 
 

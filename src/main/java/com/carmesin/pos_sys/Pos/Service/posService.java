@@ -17,9 +17,9 @@ public class posService {
 
         String input = "";
 
-        if(choice.contains("Single")){
+        if(choice.contains("2")){
             input = "single";
-        }else if(choice.contains("Group")){
+        }else if(choice.contains("1")){
             input = "group";
         }else{
             input = "birthday";
