@@ -95,4 +95,9 @@ public class authController {
     public String cookies() {
         return "cookies";
     }
+
+    @GetMapping("/myProfile")
+    public String myProfile() {
+        return "myProfile";
+    }
 }

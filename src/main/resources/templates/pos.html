@@ -55,7 +55,7 @@
 
                         td1.innerText = data[i].name;
                         td2.innerText = data[i].price;
-                        td3.innerHTML = 'Count';
+                        td3.innerHTML = test();
 
                         tr.append(td1, td2, td3);
                         document.getElementById('price_table').append(tr)
@@ -90,6 +90,21 @@
         }
 
 
+        function test() {
+            const counterValueElement = document.getElementById('counter-value');
+            let counterValue = parseInt(counterValueElement.textContent, 10);
+
+            document.getElementById('decrement-button').addEventListener('click', () => {
+                counterValue--;
+                counterValueElement.textContent = counterValue;
+            });
+
+            document.getElementById('increment-button').addEventListener('click', () => {
+                counterValue++;
+                counterValueElement.textContent = counterValue;
+            });
+        }
+
     </script>
 
 </head>
@@ -105,7 +120,19 @@
                 <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" onclick="app(1)"/>
                 <input type="submit" class="btn btn-outline-danger" name="Single" value="Single" onclick="app(2)"/>
                 <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday" onclick="app(3)"/>
-                <table id="price_table"></table>
+                <table id="price_table">
+
+                    <tr>
+                        <td>Category</td>
+                        <td>Price</td>
+                        <td>
+                            <button id="decrement-button" onclick="test()">-</button>
+                            <span id="counter-value">0</span>
+                            <button id="increment-button" onclick="test()">+</button>
+                        </td>
+                    </tr>
+
+                </table>
             </div>
         </div>
         <div class="col-4">
@@ -128,6 +155,17 @@
 </div>
 
 
+<table id="counter-table">
+    <tr>
+        <td>
+            <button id="decremjjent-button" onclick="test()">-</button>
+        </td>
+        <td id="coujjnter-value">0</td>
+        <td>
+            <button id="increment-jjbutton" onclick="test()">+</button>
+        </td>
+    </tr>
+</table>
 
 
 <!--
