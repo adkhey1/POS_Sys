@@ -30,7 +30,7 @@ public class posController {
 
 
     @PostMapping(value = "/getPrices", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPrices(@RequestBody String choice, HttpServletRequest request) {
+    public ResponseEntity<?> getPrices(@RequestBody String choice) {
 
         //Principal principal = request.getUserPrincipal();
         //userModel user = userRepository.findByEmail(principal.getName());
@@ -38,6 +38,14 @@ public class posController {
         List<priceModel> output = posService.selectChoice(choice);
 
         return ResponseEntity.status(HttpStatus.OK).header("Access-Control-Allow-Origin", "*").body(output);
+    }
+
+    @PostMapping(value = "/getPrices/receipt", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> receipt(@RequestBody String item, HttpServletRequest request) {
+
+
+
+        return ResponseEntity.status(HttpStatus.OK).body("hi");
     }
 
 
