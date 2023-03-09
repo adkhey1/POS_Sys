@@ -100,4 +100,9 @@ public class authController {
     public String myProfile() {
         return "myProfile";
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
 }

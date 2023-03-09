@@ -11,6 +11,7 @@
             crossorigin="anonymous"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script>
 
 
@@ -28,80 +29,53 @@
                 success: (data) => {
                     console.log(data)
 
-                    const priceTable = document.getElementById('price_table');
+                    const priceContainer = document.getElementById('price-container')
+                    const priceCard = document.getElementById('priceCard')
+                    priceCard.hidden = false;
 
-                    // Clear table
-                    priceTable.innerHTML = "";
+                    priceContainer.innerHTML = "";
 
-                    // Setup table
-                    let tr = document.createElement('tr');
-                    const th1 = document.createElement('th');
-                    const th2 = document.createElement('th');
-                    const th3 = document.createElement('th');
+                    data.forEach(function (item) {
 
-                    th1.innerText = 'Category';
-                    th2.innerText = 'Price';
-                    th3.innerText = 'Count';
-
-                    tr.append(th1, th2, th3);
-
-                    // Fill table
-                    for (let i = 0; i < data.length; i++) {
-
-                        tr = document.createElement('tr');
-                        const td1 = document.createElement('td');
-                        const td2 = document.createElement('td');
-                        const td3 = document.createElement('td');
-
-                        td1.innerText = data[i].name;
-                        td2.innerText = data[i].price;
-                        td3.innerHTML = test();
-
-                        tr.append(td1, td2, td3);
-                        document.getElementById('price_table').append(tr)
-                        /*
-                        var btn = document.createElement('input');
-                        btn.setAttribute('type', 'button'); // input element of type button
-                        btn.setAttribute('value', data[i].name);
-                        btn.setAttribute('id', data[i].idPrices);
-                        document.getElementById('buttons').appendChild(btn);
-                        //appendChild -> add btn to buttons
-                         */
-                    }
+                        // Erstelle eine neue Karte
+                        const card = document.createElement('li');
+                        card.classList.add('card_show');
+                        card.classList.add('card');
+                        card.style.margin = "10px";
+                        card.onclick = function () {
+                            const output = document.getElementById('output');
+                            output.innerText = `Die ausgewählte Zahl ist: ${item.price}`;
+                        }
 
 
+                        // Erstelle ein "div"-Element für den Karteninhalt
+                        const cardBody = document.createElement('div');
+                        cardBody.classList.add('card-body');
+
+
+                        cardBody.innerHTML = `<h4><a style="text-decoration: none; color: black;">${item.name}</a></h4>`;
+
+                        // Füge den Karteninhalt zur Karte hinzu
+                        card.appendChild(cardBody);
+
+                        // Füge die Karte dem DOM hinzu
+                        priceContainer.appendChild(card);
+
+                    });
+
+                    return data;
+
+                    /*
+                    var btn = document.createElement('input');
+                    btn.setAttribute('type', 'button'); // input element of type button
+                    btn.setAttribute('value', data[i].name);
+                    btn.setAttribute('id', data[i].idPrices);
+                    document.getElementById('buttons').appendChild(btn);
+                    //appendChild -> add btn to buttons
+                     */
                 }
-            });
-        }
-
-        function createCounter() {
-
-            const decrementButton = document.getElementById("decrement");
-            const incrementButton = document.getElementById("increment");
-            const counter = document.getElementById("counter");
-
-            decrementButton.addEventListener("click", () => {
-                counter.innerHTML = parseInt(counter.innerHTML) - 1;
-            });
-
-            incrementButton.addEventListener("click", () => {
-                counter.innerHTML = parseInt(counter.innerHTML) + 1;
-            });
-        }
 
 
-        function test() {
-            const counterValueElement = document.getElementById('counter-value');
-            let counterValue = parseInt(counterValueElement.textContent, 10);
-
-            document.getElementById('decrement-button').addEventListener('click', () => {
-                counterValue--;
-                counterValueElement.textContent = counterValue;
-            });
-
-            document.getElementById('increment-button').addEventListener('click', () => {
-                counterValue++;
-                counterValueElement.textContent = counterValue;
             });
         }
 
@@ -110,62 +84,60 @@
 </head>
 <body class="container">
 
-
 <div class="container">
-    <div class="row">
-        <div class="col-8">
-            <div>
-                <h3>Choose your selection!</h3>
-                <br>
-                <input type="submit" class="btn btn-outline-danger" name="Group" value="Group" onclick="app(1)"/>
-                <input type="submit" class="btn btn-outline-danger" name="Single" value="Single" onclick="app(2)"/>
-                <input type="submit" class="btn btn-outline-danger" name="Birthday" value="Birthday" onclick="app(3)"/>
-                <table id="price_table">
+    <div class="main-body">
 
-                    <tr>
-                        <td>Category</td>
-                        <td>Price</td>
-                        <td>
-                            <button id="decrement-button" onclick="test()">-</button>
-                            <span id="counter-value">0</span>
-                            <button id="increment-button" onclick="test()">+</button>
-                        </td>
-                    </tr>
+        <br><br>
 
-                </table>
-            </div>
-        </div>
-        <div class="col-4">
-            <h3>Current Price:</h3>
-            <br>
-            <br>
-            <fieldset>
-                <legend>Adult</legend>
-                <div class="row">
-                    <div class="col-6">
-                        <p>Price</p>
-                    </div>
-                    <div class="col-4">
-                        <input type="submit" class="btn btn-outline-danger" name="Delete" value="Delete"/>
+        <div class="row">
+            <div class="col">
+                <div class="card" onclick="app(2)">
+                    <div class="card-body">
+                        <h4><a style="text-decoration: none; color: black; text-align: center">Single</a></h4>
                     </div>
                 </div>
-            </fieldset>
+            </div>
+            <div class="col">
+                <div class="card" onclick="app(1)">
+                    <div class="card-body">
+                        <h4><a style="text-decoration: none; color: black; text-align: center">Group</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" onclick="app(3)">
+                    <div class="card-body">
+                        <h4><a style="text-decoration: none; color: black; text-align: center">Birthday</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+
+        <div class="row">
+            <div class="col-md-6 border-right">
+                <ul id="price-container">
+
+
+                    <!-- for each function to get a card for each course -->
+
+                </ul>
+
+
+            </div>
+            <div class="col-md-4" hidden id="priceCard" style="margin-left: 100px; margin-top: 10px">
+                <div class="card" onclick="app(3)">
+                    <div class="card-body">
+                        <p id="output"></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-
-<table id="counter-table">
-    <tr>
-        <td>
-            <button id="decremjjent-button" onclick="test()">-</button>
-        </td>
-        <td id="coujjnter-value">0</td>
-        <td>
-            <button id="increment-jjbutton" onclick="test()">+</button>
-        </td>
-    </tr>
-</table>
+</div>
 
 
 <!--
